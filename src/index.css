@@ -1,0 +1,309 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ================================================================================
+  Farm with AI - Hyper-Enhanced Design System v2.0
+  Theme: Immersive, Dynamic, and Modern Agriculture
+  Author: Gemini AI
+  Notes: This is a significant expansion focusing on micro-interactions,
+         scroll-triggered animations, and a more fluid, premium layout.
+================================================================================
+*/
+
+@layer base {
+  :root {
+    /* ====================[ Core Color Palette ]==================== */
+    --background: 220 20% 98%;
+    --foreground: 220 25% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 15%;
+
+    /* ====================[ Brand Colors ]==================== */
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 142 80% 50%;
+    --secondary: 35 70% 90%;
+    --secondary-foreground: 35 50% 20%;
+    --muted: 220 20% 94%;
+    --muted-foreground: 220 15% 45%;
+    --accent: 25 95% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* ====================[ UI & Form Elements ]==================== */
+    --border: 220 20% 90%;
+    --input: 220 20% 96%;
+    --ring: 142 76% 36%;
+    --radius: 0.75rem;
+
+    /* ====================[ Dynamic Gradients ]==================== */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-sunset: linear-gradient(135deg, hsl(var(--accent)), hsl(35 95% 60%));
+    --gradient-hero: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--accent)));
+    --gradient-card-border: linear-gradient(160deg, hsl(var(--primary-glow)), hsl(var(--accent)), hsl(var(--primary)));
+
+    /* ====================[ Advanced Shadows ]==================== */
+    --shadow-soft: 0 2px 8px hsl(var(--primary) / 0.08);
+    --shadow-medium: 0 6px 15px hsl(var(--primary) / 0.12);
+    --shadow-hard: 0 10px 30px hsl(var(--primary) / 0.15);
+    --shadow-glow: 0 0 25px hsl(var(--primary-glow) / 0.2);
+    --shadow-warm: 0 6px 20px hsl(var(--accent) / 0.2);
+  }
+
+  /* =================================================================
+     DARK MODE THEME
+     ================================================================= */
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23dce2e8' fill-opacity='0.15'%3E%3Cpath d='M50 50V30H30v20H10v10h20v20h10V60h20V50H50z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-playfair font-bold tracking-tight;
+  }
+}
+
+/* =================================================================
+   COMPONENT LAYER - STYLING FOR REUSABLE ELEMENTS
+   ================================================================= */
+@layer components {
+
+  /* --- Section Styling with SVG Dividers --- */
+  .section-container {
+    @apply relative py-24 px-4;
+  }
+
+  .section-divider {
+    @apply absolute bottom-0 left-0 w-full overflow-hidden leading-[0];
+    transform: rotate(180deg);
+  }
+
+  .section-divider svg {
+    @apply relative block w-full;
+    height: 90px;
+  }
+
+  .section-divider .shape-fill {
+    fill: hsl(var(--secondary));
+  }
+  
+  .section-accent .section-divider .shape-fill {
+    fill: #f0fdf4; /* green-50 */
+  }
+
+  /* --- Advanced Card Enhancements --- */
+  .interactive-card {
+    @apply bg-card border border-border rounded-2xl p-4 transition-all duration-300 ease-in-out relative overflow-hidden;
+    box-shadow: var(--shadow-soft);
+    transform-style: preserve-3d;
+  }
+
+  .interactive-card:hover {
+    box-shadow: var(--shadow-hard);
+    transform: rotateX(5deg) rotateY(-5deg) scale(1.05);
+  }
+
+  .interactive-card .card-glow-border {
+    @apply absolute -inset-1 rounded-2xl opacity-0 transition-opacity duration-300 z-0;
+    background: var(--gradient-card-border);
+    animation: rotateGradient 4s linear infinite;
+    background-size: 200% 200%;
+  }
+
+  .interactive-card:hover .card-glow-border {
+    @apply opacity-75;
+  }
+
+  .interactive-card .card-content {
+    @apply relative z-10;
+  }
+
+  /* --- Button Enhancements --- */
+  .btn-hero {
+    @apply text-primary-foreground font-semibold px-8 py-3 rounded-full transition-all duration-300 ease-in-out relative overflow-hidden;
+    background-size: 200% auto;
+    background-image: var(--gradient-hero);
+    box-shadow: var(--shadow-medium);
+  }
+
+  .btn-hero:hover {
+    background-position: right center;
+    transform: scale(1.05);
+    box-shadow: var(--shadow-warm);
+  }
+
+  .btn-secondary {
+    @apply bg-card border-2 border-primary text-primary font-semibold px-6 py-2 rounded-full transition-all duration-300 ease-in-out;
+  }
+
+  .btn-secondary:hover {
+    @apply bg-primary text-primary-foreground scale-105;
+  }
+
+  /* --- Language Selector Buttons --- */
+  .language-btn {
+    @apply bg-transparent border-2 border-border text-foreground px-6 py-2 rounded-lg font-medium transition-all duration-300 ease-in-out transform hover:scale-105 relative;
+  }
+
+  .language-btn.active {
+    @apply bg-primary border-primary text-primary-foreground shadow-lg;
+  }
+
+  .language-btn:not(.active):hover {
+    @apply border-primary text-primary;
+  }
+
+  /* --- Custom Modal / Pop-up Styling --- */
+  .modal-overlay {
+    @apply fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4;
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .modal-content {
+    @apply bg-card rounded-2xl p-8 shadow-hard w-full max-w-md text-center;
+    animation: zoomIn 0.3s ease-out;
+  }
+  
+  /* --- Custom Tooltip --- */
+  .custom-tooltip {
+    @apply relative;
+  }
+  .custom-tooltip .tooltip-text {
+    @apply invisible absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max bg-foreground text-background text-xs rounded-md px-2 py-1 transition-opacity duration-200;
+  }
+  .custom-tooltip:hover .tooltip-text {
+    @apply visible opacity-100;
+  }
+
+  /* --- Floating Chat Icon --- */
+  .floating-chat {
+    @apply fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full shadow-lg flex items-center justify-center cursor-pointer transition-all duration-300 ease-in-out;
+    background-image: var(--gradient-primary);
+  }
+
+  .floating-chat:hover {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: var(--shadow-glow);
+  }
+  
+  /* --- Scroll-Triggered Animations --- */
+  .scroll-animate {
+    @apply opacity-0 transition-all duration-700 ease-out;
+  }
+  
+  .scroll-animate.fade-in-up {
+    transform: translateY(40px);
+  }
+  
+  .scroll-animate.fade-in-left {
+    transform: translateX(-40px);
+  }
+  
+  .scroll-animate.is-visible {
+    @apply opacity-100;
+    transform: translate(0, 0);
+  }
+}
+
+/* =================================================================
+   UTILITIES LAYER - CUSTOM HELPERS AND OVERRIDES
+   ================================================================= */
+@layer utilities {
+  /* --- Custom Scrollbar --- */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary-glow));
+  }
+
+  /* --- Font Families --- */
+  .font-inter { font-family: 'Inter', sans-serif; }
+  .font-playfair { font-family: 'Playfair Display', serif; }
+
+  /* --- Gradient Backgrounds --- */
+  .bg-gradient-primary { background-image: var(--gradient-primary); }
+  .bg-gradient-sunset { background-image: var(--gradient-sunset); }
+  .bg-gradient-hero { background-image: var(--gradient-hero); }
+
+  /* --- Custom Shadows --- */
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-medium { box-shadow: var(--shadow-medium); }
+  .shadow-hard { box-shadow: var(--shadow-hard); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .shadow-warm { box-shadow: var(--shadow-warm); }
+}
+
+/* =================================================================
+   KEYFRAME ANIMATIONS
+   ================================================================= */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: hsl(var(--primary)); }
+}
+
+@keyframes rotateGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
