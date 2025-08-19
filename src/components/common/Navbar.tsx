@@ -50,7 +50,7 @@ const Navbar = ({ isLoggedIn, userProfile }: NavbarProps) => {
             onClick={handleLogoClick}
           >
             <img 
-              src="src\assets\Farm with AI.png" 
+              src="../assets/Farm with AI.png" 
               alt="Farm with AI Logo" 
               className="h-8 w-8"
             />
