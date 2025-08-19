@@ -28,7 +28,7 @@ const Home = () => {
           <Link to="/login" className="inline-block">
             <div className="flex flex-col items-center space-y-4 cursor-pointer hover:scale-105 transition-spring">
               <img 
-                src="src\assets\Farm with AI.png" 
+                src="/Farm-with-AI.png" 
                 alt="Farm with AI Logo" 
                 className="h-24 w-24 drop-shadow-lg"
               />

@@ -33,7 +33,7 @@ const Login = () => {
         <CardHeader className="text-center space-y-4">
           <div className="flex justify-center">
             <img 
-              src="src\assets\Farm with AI.png" 
+              src="/Farm-with-AI.png" 
               alt="Farm with AI Logo" 
               className="h-16 w-16"
             />
